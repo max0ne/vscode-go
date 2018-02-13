@@ -59,6 +59,8 @@ export function getTextEditForAddImport(arg: string): vscode.TextEdit[] {
 		return null;
 	}
 
+	arg = arg.toLowerCase();
+
 	let { imports, pkg } = parseFilePrelude(vscode.window.activeTextEditor.document.getText());
 	let multis = imports.filter(x => x.kind === 'multi');
 	if (multis.length > 0) {
