@@ -2,7 +2,7 @@
 
 [![Join the chat at https://gitter.im/Microsoft/vscode-go](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Microsoft/vscode-go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/Microsoft/vscode-go.svg?branch=master)](https://travis-ci.org/Microsoft/vscode-go)
 
-Read the [Release Notes](https://github.com/Microsoft/vscode-go/wiki/Release-Notes) to know what has changed over the last few versions of this extension
+Read the [Release Notes](https://github.com/Microsoft/vscode-go/wiki/Release-Notes) to know what has changed over the last few versions of this extension.
 
 This extension adds rich language support for the Go language to VS Code, including:
 
@@ -27,6 +27,7 @@ This extension adds rich language support for the Go language to VS Code, includ
 - Run Tests under the cursor, in current file, in current package, in the whole workspace (using `go test`)
 - Show code coverage
 - Generate method stubs for interfaces (using `impl`)
+- Fill struct literals with default values (using `fillstruct`)
 - [_partially implemented_] Debugging (using `delve`)
 - Upload to the Go Playground (using `goplay`)
 
@@ -35,9 +36,9 @@ This extension adds rich language support for the Go language to VS Code, includ
 
 ## How to use this extension?
 
-Install and open [Visual Studio Code](https://code.visualstudio.com). Press `Ctrl+Shift+X` or `Cmd+Shift+X` to open the Extensions pane. Find and install the Go extension. You can also install the extension from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go).Open any `.go` file in VS Code. The extension is now activated.
+Install and open [Visual Studio Code](https://code.visualstudio.com). Press `Ctrl+Shift+X` or `Cmd+Shift+X` to open the Extensions pane. Find and install the Go extension. You can also install the extension from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go). Open any `.go` file in VS Code. The extension is now activated.
 
-This extension uses a set of Go tools to provide the various rich features. These tools are installed in your GOPATH by default. If you wish to have these tools in a separate location, provide the desired location in the setting `go.toolsGopath`. Read more about this and the tools at [Go tools that the Go extension depends on](https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on)
+This extension uses a set of Go tools to provide the various rich features. These tools are installed in your GOPATH by default. If you wish to have these tools in a separate location, provide the desired location in the setting `go.toolsGopath`. Read more about this and the tools at [Go tools that the Go extension depends on](https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on).
 
 You will see `Analysis Tools Missing` in the bottom right, clicking this will offer to install all of the dependent Go tools. You can also run the command `Go: Install/Update tools` to install/update the same.
 
@@ -58,7 +59,7 @@ Set `go.useLanguageServer` to `true` to use the Go language server from [Sourceg
 * If set to true, you will be prompted to install the Go language server. Once installed, you will have to reload VS Code window. The language server will then be run by the Go extension in the background to provide services needed for the above mentioned features.
 * Everytime you change the value of the setting `go.useLanguageServer`, you need to reload the VS Code window for it to take effect.
 * To collect traces, set `"go.languageServerFlags": ["-trace"]`
-* To collect errors from language server in a logfile, set `"go.languageServerFlags": ["-trace", "-logfile", "path to a text file that exists" ]`
+* To collect errors from language server in a logfile, set `"go.languageServerFlags": ["-trace", "-logfile", "path to a text file that exists"]`
 
 
 ### Linter
@@ -106,31 +107,36 @@ In addition to integrated editing features, the extension also provides several 
 * `Go: Add Tags` Adds configured tags to selected struct fields.
 * `Go: Remove Tags` Removes configured tags from selected struct fields.
 * `Go: Generate Interface Stubs` Generates method stubs for given interface
+* `Go: Fill Struct` Fills struct literal with default values
 * `Go: Run on Go Playground` Upload the current selection or file to the Go Playground
 
 You can access all of the above commands from the command pallet (`Cmd+Shift+P` or `Ctrl+Shift+P`).
 
-Few of these are available in the editor context menu as an experimental feature as well. To control which of these commands show up in the editor context menu, update the setting `go.editorContextMenuCommands`
+Few of these are available in the editor context menu as an experimental feature as well. To control which of these commands show up in the editor context menu, update the setting `go.editorContextMenuCommands`.
 
 
 ### _Optional_: Debugging
 
 To use the debugger, you must currently manually install `delve`.  See the [Installation Instructions](https://github.com/derekparker/delve/tree/master/Documentation/installation) for full details.  On OS X it requires creating a self-signed cert to sign the `dlv` binary.
 
-For more read [Debugging Go Code Using VS Code](https://github.com/Microsoft/vscode-go/wiki/Debugging-Go-code-using-VS-Code)
+For more read [Debugging Go Code Using VS Code](https://github.com/Microsoft/vscode-go/wiki/Debugging-Go-code-using-VS-Code).
 
 #### Remote Debugging
 
-To remote debug using VS Code, read [Remote Debugging](https://github.com/Microsoft/vscode-go/wiki/Debugging-Go-code-using-VS-Code#remote-debugging)
+To remote debug using VS Code, read [Remote Debugging](https://github.com/Microsoft/vscode-go/wiki/Debugging-Go-code-using-VS-Code#remote-debugging).
+
+## Install or update all dependencies
+
+To quickly get all dependencies installed (or updated) see the [Go Tools wiki page](https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on)
 
 ## Building and Debugging the Extension
 
 You can set up a development environment for debugging the extension during extension development.
-Read more at [Building, Debugging and Sideloading the extension in Visual Studio Code](https://github.com/Microsoft/vscode-go/wiki/Building,-Debugging-and-Sideloading-the-extension-in-Visual-Studio-Code)
+Read more at [Building, Debugging and Sideloading the extension in Visual Studio Code](https://github.com/Microsoft/vscode-go/wiki/Building,-Debugging-and-Sideloading-the-extension-in-Visual-Studio-Code).
 
 ## Tools this extension depends on
 
-This extension uses a host of Go tools to provide the various rich features. These tools are installed in your GOPATH by default. If you wish to have the extension use a separate GOPATH for its tools, provide the desired location in the setting `go.toolsGopath`. Read more about this and the tools at [Go tools that the Go extension depends on](https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on)
+This extension uses a host of Go tools to provide the various rich features. These tools are installed in your GOPATH by default. If you wish to have the extension use a separate GOPATH for its tools, provide the desired location in the setting `go.toolsGopath`. Read more about this and the tools at [Go tools that the Go extension depends on](https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on).
 
 
 ## License
